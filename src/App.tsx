@@ -10,6 +10,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import ProductPage from "./pages/ProductPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import FormPage from "./pages/FormPage";
 
 // type Identity = {
 //   id: number;
@@ -45,6 +46,7 @@ function App() {
         <Route path="/products" element={<ProductPage />} />        
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/form" element={<FormPage />} />
 
 
 

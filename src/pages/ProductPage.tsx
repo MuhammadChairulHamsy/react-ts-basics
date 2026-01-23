@@ -111,7 +111,7 @@ const ProductPage = () => {
                       {product.price}
                     </span>
                     <button
-                      onClick={() => navigate(`/products/${product.slug}`)} // PERBAIKAN DI SINI
+                      onClick={() => navigate(`/products/${product.slug}`)} 
                       className="p-2 bg-slate-900 text-white rounded-lg hover:bg-indigo-600 transition text-sm px-4 cursor-pointer"
                     >
                       Detail Product

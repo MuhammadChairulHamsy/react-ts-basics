@@ -57,7 +57,7 @@ const HomePage = () => {
             <img 
               src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=60" 
               alt="Featured Product" 
-              className="rounded-[2.5rem] shadow-2xl object-cover w-full h-[400px] md:h-[500px]"
+              className="rounded-[2.5rem] shadow-2xl object-cover w-full h-96 md:h-[500px]"
             />
           </div>
         </div>
