@@ -1,5 +1,13 @@
 // data/products.ts
-export const PRODUCT_DATA = [
+type Product = {
+  slug: string;
+  name: string;
+  price: string;
+  image: string;
+  desc: string;
+}
+
+export const PRODUCT_DATA: Product[] = [
   {
     slug: "nike-air-max",
     name: "Nike Air Max Red",

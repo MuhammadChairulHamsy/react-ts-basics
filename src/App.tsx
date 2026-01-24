@@ -11,6 +11,11 @@ import ProductPage from "./pages/ProductPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import FormPage from "./pages/FormPage";
+import RHFPage from "./pages/RHFPage";
+
+// uncotrolled/input
+  // const inputRef = useRef<HTMLInputElement>(null);
+  // const inputEmailRef = useRef<HTMLInputElement>(null);
 
 // type Identity = {
 //   id: number;
@@ -46,7 +51,10 @@ function App() {
         <Route path="/products" element={<ProductPage />} />        
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/contact" element={<ContactPage />} />
+
+        {/* Form */}
         <Route path="/form" element={<FormPage />} />
+        <Route path="/rhf" element={<RHFPage />} />
 
 
 

@@ -1,4 +1,4 @@
-**HomeWork**
+**HomeWork 1**
 
 Buat aplikasi Reat dengan fitur-fitur berikut:
 
@@ -16,3 +16,32 @@ Buat aplikasi Reat dengan fitur-fitur berikut:
 4. Halaman 404 yang menampilkan pesan kesalahan khusus untuk rute yang tidak terdefinisi.
 
 5. Pastikan bilah navigasi menyoroti tautan aktif menggunakan Link.
+
+**HomeWork 2**
+
+Buat formulir React dengan persyaratan berikut:
+
+1. Formulir pendaftaran dengan kolom untuk nama, email, kata sandi, dan usia
+
+2. Gunakan `useState` untuk menangani input formulir dan mengirimkan data ke konsol
+
+3. Refaktor formulir menggunakan `react-hook-form` untuk manajemen state yang lebih baik
+
+4. Implementasikan validasi formulir menggunakan `zod` dengan aturan berikut:
+
+- Nama: Wajib, minimal 3 karakter.
+
+- Email: Harus berupa format email yang valid.
+
+- Kata sandi: Minimal 8 karakter, berisi minimal 1 huruf besar, dan 1 angka.
+
+- Usia: Harus berupa angka dan minimal 18 tahun.
+
+5. Tampilkan pesan kesalahan jika validasi gagal.
+
+6. Fitur bonus:
+
+- Setelah pengiriman formulir, simpan data yang dikirimkan dalam daftar dan tampilkan sebagai kartu di bawah formulir.
+
+- Setiap kartu harus menampilkan nama, email, kata sandi, dan usia yang terdaftar
+- Simpan data dalam state lokal
