@@ -12,6 +12,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import FormPage from "./pages/FormPage";
 import RHFPage from "./pages/RHFPage";
+import EmployesPage from "./pages/EmployesPage";
 
 // uncotrolled/input
   // const inputRef = useRef<HTMLInputElement>(null);
@@ -46,11 +47,14 @@ function App() {
   return (
     <>
       <Routes>
+        {/* Page */}
         <Route index element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/products" element={<ProductPage />} />        
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/employes" element={<EmployesPage />} />
+
 
         {/* Form */}
         <Route path="/form" element={<FormPage />} />

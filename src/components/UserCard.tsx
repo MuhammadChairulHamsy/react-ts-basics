@@ -24,6 +24,9 @@ export const UserCard = ({ user, index }: UserCardProps) => {
         <p>
           <span className="font-semibold">Age:</span> {user.age}
         </p>
+        <p>
+          <span className="font-semibold">Gender:</span> {user.gender}
+        </p>
       </div>
     </div>
   );

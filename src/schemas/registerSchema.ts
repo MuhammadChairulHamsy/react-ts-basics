@@ -18,6 +18,8 @@ export const registerFormSchema = z.object({
     .regex(/[0-9]/,  "Password harus mengandung minimal 1 angka"),
     confirmPassword: z.string(),
     age: z.coerce.number<number>().min(18, { message: "Minimal 18 karakter" }),
+    gender: z.enum(["male", "female"]),
+    isPregnant: z.boolean().optional(),
   })
       .superRefine(({ password, confirmPassword }, ctx) => {
         if (confirmPassword !== password) {

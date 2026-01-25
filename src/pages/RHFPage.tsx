@@ -111,6 +111,25 @@ const RHFPage = () => {
             </span>
           </div>
 
+          <div className="flex flex-col">
+            <select
+              {...form.register("gender")}
+              className="border rounded-lg p-2 mt-1 focus:ring-2 focus:ring-blue-500 outline-none"
+            >
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+            <span className="text-red-500 font-medium">
+              {form.formState.errors.gender?.message}
+            </span>
+            {form.watch("gender") === "female" && (
+              <label>
+                Hamil?
+                <input type="checkbox" {...form.register("isPregnant")} />
+              </label>
+            )}
+          </div>
+
           <button className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition">
             Submit
           </button>
