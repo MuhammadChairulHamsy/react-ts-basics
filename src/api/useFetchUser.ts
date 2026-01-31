@@ -1,20 +1,17 @@
-import { useState } from "react";
+import { axiosJsonPlaceholder } from "../lib/axios";
 
-
-type UserResponse = {
-    id: string;
+export type UserResponse = {
+  id: string;
+  name: string;
+  email: string;
+  company: {
     name: string;
-    email: string;
-    company: string;
-}
-export const useFetchUser = () => {
-    const [users, setUsers] = useState<UserResponse[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [usersError, setUsersError] = useState("");
-    
-    try {
-        
-    } catch (error) {
-        
-    }
-}
+    catchPhrase: string;
+    bs: string;
+  };
+};
+export const fetchUsers = async (): Promise<UserResponse[]> => {
+  const response = await axiosJsonPlaceholder.get<UserResponse[]>("/users");
+
+  return response.data;
+};

@@ -9,9 +9,10 @@ const EmployesPage = () => {
     useFetchEmployes();
   const { createEmploye, createEmployeIsLoading, createEmployeError } =
     useCreateEmploye();
-  const {deleteEmploye, deleteEmployeIsLoading, deleteEmployeError} = useDeleteEmploye();
+  const { deleteEmploye, deleteEmployeIsLoading, deleteEmployeError } =
+    useDeleteEmploye();
   const [inputText, setInputText] = useState("");
-  
+
   const handleCreateEmploye = async () => {
     await createEmploye(inputText);
     await fetchEmployes();
@@ -22,12 +23,10 @@ const EmployesPage = () => {
     await fetchEmployes();
   };
 
- 
-
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
+        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-indigo-600 border-r-transparent"></div>
       </div>
     );
   }
@@ -60,83 +59,110 @@ const EmployesPage = () => {
         </div>
       </nav>
 
-      <main className="max-w-4xl mx-auto px-6 py-16">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">
-            Employes Page
-          </h1>
+      <main className="max-w-4xl mx-auto px-6 py-12">
+        <div className="flex justify-between items-center mb-10">
+          <div>
+            <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+              Employees Management
+            </h1>
+            <p className="text-slate-500 text-sm">
+              Add, remove, or manage your team members.
+            </p>
+          </div>
+          <button
+            disabled={loading}
+            onClick={fetchEmployes}
+            className="bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-slate-50 transition-all shadow-sm active:scale-95"
+          >
+            Refresh List
+          </button>
         </div>
-        <table className="border border-slate-950">
-          <thead className="border border-slate-950">
-            <tr>
-              <th className="border border-slate-950">Id</th>
-              <th className="border border-slate-950">Name</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {employes.map((data) => {
-              return (
-                <tr key={data.id}>
-                  <td className="border border-slate-950">{data.id}</td>
-                  <td className="border border-slate-950">{data.name}</td>
-                  <td>
+
+        {/* Main Table Container */}
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-slate-50/50 border-b border-slate-200">
+                <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500 w-20">
+                  Id
+                </th>
+                <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500">
+                  Name
+                </th>
+                <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500 text-right">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {employes.map((data) => (
+                <tr
+                  key={data.id}
+                  className="hover:bg-slate-50/50 transition-colors group"
+                >
+                  <td className="px-6 py-4 text-sm text-slate-400 font-mono">
+                    #{data.id}
+                  </td>
+                  <td className="px-6 py-4 text-sm font-medium text-slate-700">
+                    {data.name}
+                  </td>
+                  <td className="px-6 py-4 text-right">
                     <button
                       onClick={() => handleDeleteEmploye(data.id)}
                       disabled={deleteEmployeIsLoading}
-                      className=" bg-red-500 text-white font-bold p-1 m-2 rounded-xl hover:bg-red-700 transition-all transform active:scale-[0.98] shadow-lg shadow-indigo-200 cursor-pointer"
+                      className="text-red-500 hover:text-red-700 hover:bg-red-50 px-3 py-1.5 rounded-lg text-xs font-bold transition-all disabled:opacity-50"
                     >
-                      Delete
+                      {deleteEmployeIsLoading ? "Deleting..." : "Delete"}
                     </button>
-                    {deleteEmployeError && (
-                      <p className="text-red-500 text-md">
-                        {deleteEmployeError}
-                      </p>
-                    )}
                   </td>
                 </tr>
-              );
-            })}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={2} className="border border-slate-950 ">
-                <input
-                  onChange={(e) => setInputText(e.target.value)}
-                  type="text"
-                  value={inputText}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td colSpan={2}>
-                <button
-                  onClick={handleCreateEmploye}
-                  disabled={createEmployeIsLoading}
-                >
-                  Create employe
-                </button>
-              </td>
-            </tr>
-            {createEmployeError && (
+              ))}
+            </tbody>
+
+            {/* Input Section using TFOOT as a "New Entry" row */}
+            <tfoot className="bg-slate-50/30 border-t-2 border-slate-100">
               <tr>
-                <td className="border border-slate-950 " colSpan={2}>
-                  {createEmployeError}
+                <td colSpan={2} className="px-6 py-4">
+                  <input
+                    onChange={(e) => setInputText(e.target.value)}
+                    type="text"
+                    value={inputText}
+                    placeholder="Enter new employee name..."
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                  />
+                </td>
+                <td className="px-6 py-4 text-right">
+                  <button
+                    onClick={handleCreateEmploye}
+                    disabled={createEmployeIsLoading || !inputText}
+                    className="bg-indigo-600 text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-indigo-700 transition-all disabled:bg-slate-300 shadow-md shadow-indigo-100"
+                  >
+                    {createEmployeIsLoading ? "Adding..." : "Add Employee"}
+                  </button>
                 </td>
               </tr>
-            )}
-          </tfoot>
-        </table>
-        <button
-          disabled={loading}
-          onClick={fetchEmployes}
-          className=" bg-indigo-600 text-white font-bold p-1 my-2 rounded-xl hover:bg-indigo-700 transition-all transform active:scale-[0.98] shadow-lg shadow-indigo-200 cursor-pointer"
-        >
-          Button
-        </button>
-        {employesError && (
-          <p className="text-red-500 text-md">{employesError}</p>
-        )}
+            </tfoot>
+          </table>
+        </div>
+
+        {/* Error Messages */}
+        <div className="mt-4 space-y-2">
+          {deleteEmployeError && (
+            <p className="text-red-500 text-xs bg-red-50 p-2 rounded-lg border border-red-100">
+              ⚠️ {deleteEmployeError}
+            </p>
+          )}
+          {createEmployeError && (
+            <p className="text-red-500 text-xs bg-red-50 p-2 rounded-lg border border-red-100">
+              ⚠️ {createEmployeError}
+            </p>
+          )}
+          {employesError && (
+            <p className="text-red-500 text-xs bg-red-50 p-2 rounded-lg border border-red-100">
+              ⚠️ {employesError}
+            </p>
+          )}
+        </div>
       </main>
     </div>
   );
