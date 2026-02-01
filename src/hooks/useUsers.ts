@@ -55,7 +55,11 @@ export const useUsers = () => {
     forms: { newForm, setNewForm, editForm, setEditForm },
     actions: {
       refetch: usersQuery.refetch,
-      handleAdd: () => addMutation.mutate(newForm),
+      handleAdd: () => {
+        if(newForm.name.trim() && newForm.email.trim()) {
+          addMutation.mutate(newForm)
+        }
+      },
       handleUpdate: () => updateMutation.mutate({ userId: editForm.id, payload: editForm }),
       handleDelete: (id: string) => confirm("Hapus user?") && deleteMutation.mutate(id),
     }

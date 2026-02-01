@@ -6,7 +6,6 @@ export const registerFormSchema = z.object({
     .min(3, { message: "Minimal 3 karakter" })
     .max(10, { message: "Maksimal 10 karakter" }),
   email: z.string().email({
-    pattern: z.regexes.email,
     message: "Email harus mengandung @",
   }),
   password: z

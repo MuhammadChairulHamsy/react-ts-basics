@@ -15,12 +15,19 @@ const UsersPageMe = () => {
     <div className="min-h-screen bg-slate-50">
       <main className="max-w-5xl mx-auto px-6 py-12">
         <div className="flex justify-between items-end mb-8">
-          <h1 className="text-3xl font-extrabold">User Directory</h1>
+          <div>
+            <h1 className="text-3xl font-extrabold text-slate-900">
+              User Directory
+            </h1>
+            <p className="text-slate-500">
+              Manage your team members and their information.
+            </p>
+          </div>
           <button
             onClick={() => actions.refetch()}
             className="bg-indigo-600 text-white px-6 py-2 rounded-lg"
           >
-            Refresh
+            Refresh Data
           </button>
         </div>
 
@@ -46,7 +53,7 @@ const UsersPageMe = () => {
                   <td className="px-6 py-4 text-right">
                     <button
                       onClick={() => actions.handleDelete(user.id)}
-                      className="text-red-500"
+                      className="border p-1 bg-red-500 font-semibold text-slate-50 rounded-lg"
                     >
                       Delete
                     </button>
@@ -54,6 +61,7 @@ const UsersPageMe = () => {
                   <td className="px-6 py-4 text-right">
                     <input
                       type="radio"
+                      name="edit-selection"
                       checked={forms.editForm.id === user.id}
                       onChange={() =>
                         forms.setEditForm({ ...user, id: user.id })
@@ -88,4 +96,5 @@ const UsersPageMe = () => {
     </div>
   );
 };
+
 export default UsersPageMe;
