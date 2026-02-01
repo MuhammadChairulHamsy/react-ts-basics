@@ -3,21 +3,53 @@ import { useState } from "react";
 import { useCreateEmploye } from "../api/useCreateEmploye";
 import { useFetchEmployes } from "../api/useFetchEmploye";
 import { useDeleteEmploye } from "../api/useDeleteEmploye";
+import { useEditEmploye } from "../api/useEditEmploye";
 
 const EmployesPage = () => {
+  // hooks
   const { fetchEmployes, employes, loading, employesError } =
     useFetchEmployes();
   const { createEmploye, createEmployeIsLoading, createEmployeError } =
     useCreateEmploye();
+  const { editEmploye, editEmployeIsLoading, editEmployeError } =
+    useEditEmploye();
   const { deleteEmploye, deleteEmployeIsLoading, deleteEmployeError } =
     useDeleteEmploye();
+
+    // input
   const [inputText, setInputText] = useState("");
+  const [inputJobText, setInputJobText] = useState("");
+
+  // edit
+  const [editInputText, setEditInputText] = useState("");
+  const [editJobInputText, setEditJobInputText] = useState("");
+
+  // select
+  const [selectedEmployeId, setSelectedEmployeId] = useState("");
 
   const handleCreateEmploye = async () => {
-    await createEmploye(inputText);
+    await createEmploye({
+      name: inputText,
+      job: inputJobText,
+    });
     await fetchEmployes();
     setInputText("");
+    setInputJobText("");
   };
+
+  const handleEditEmploye = async () => {
+    if (setSelectedEmployeId && (editInputText || editJobInputText)) {
+      await editEmploye(selectedEmployeId, {
+        name: editInputText,
+        job: editJobInputText,
+      });
+      await fetchEmployes();
+      setSelectedEmployeId("");
+      setEditInputText("");
+      setEditJobInputText("");
+    }
+  };
+
   const handleDeleteEmploye = async (employeId: string) => {
     await deleteEmploye(employeId);
     await fetchEmployes();
@@ -89,8 +121,14 @@ const EmployesPage = () => {
                 <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500">
                   Name
                 </th>
+                <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500">
+                  Job
+                </th>
                 <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500 text-right">
                   Action
+                </th>
+                <th className="px-6 py-4 text-xs font-bold uppercase text-slate-500 text-right">
+                  Select Edit
                 </th>
               </tr>
             </thead>
@@ -106,6 +144,9 @@ const EmployesPage = () => {
                   <td className="px-6 py-4 text-sm font-medium text-slate-700">
                     {data.name}
                   </td>
+                  <td className="px-6 py-4 text-sm font-medium text-slate-700">
+                    {data.job}
+                  </td>
                   <td className="px-6 py-4 text-right">
                     <button
                       onClick={() => handleDeleteEmploye(data.id)}
@@ -115,6 +156,19 @@ const EmployesPage = () => {
                       {deleteEmployeIsLoading ? "Deleting..." : "Delete"}
                     </button>
                   </td>
+                  <td className="px-6 py-4 text-right">
+                    <input
+                      checked={data.id === selectedEmployeId}
+                      onChange={() => {
+                        setSelectedEmployeId(data.id);
+                        setEditInputText(data.name);
+                        setEditJobInputText(data.job)
+                        }}
+                      type="radio"
+                      name="employe-edit"
+                      value={selectedEmployeId}
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -122,12 +176,21 @@ const EmployesPage = () => {
             {/* Input Section using TFOOT as a "New Entry" row */}
             <tfoot className="bg-slate-50/30 border-t-2 border-slate-100">
               <tr>
-                <td colSpan={2} className="px-6 py-4">
+                <td colSpan={2} className="px-6 py-1">
                   <input
                     onChange={(e) => setInputText(e.target.value)}
                     type="text"
                     value={inputText}
                     placeholder="Enter new employee name..."
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                  />
+                </td>
+                <td colSpan={2} className="px-6 py-1">
+                  <input
+                    onChange={(e) => setInputJobText(e.target.value)}
+                    type="text"
+                    value={inputJobText}
+                    placeholder="Enter new employee job..."
                     className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                   />
                 </td>
@@ -137,7 +200,36 @@ const EmployesPage = () => {
                     disabled={createEmployeIsLoading || !inputText}
                     className="bg-indigo-600 text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-indigo-700 transition-all disabled:bg-slate-300 shadow-md shadow-indigo-100"
                   >
-                    {createEmployeIsLoading ? "Adding..." : "Add Employee"}
+                    {createEmployeIsLoading ? "Adding..." : " Add Employee"}
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td colSpan={2} className="px-6 py-2">
+                  <input
+                    onChange={(e) => setEditInputText(e.target.value)}
+                    type="text"
+                    value={editInputText}
+                    placeholder="Enter Edit employee id..."
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                  />
+                </td>
+                <td colSpan={2} className="px-6 py-2">
+                  <input
+                    onChange={(e) => setEditJobInputText(e.target.value)}
+                    type="text"
+                    value={editJobInputText}
+                    placeholder="Enter Edit job employee id..."
+                    className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                  />
+                </td>
+                <td className="px-6 py-4 text-right">
+                  <button
+                    onClick={handleEditEmploye}
+                    disabled={editEmployeIsLoading || !selectedEmployeId}
+                    className="bg-indigo-600 text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-indigo-700 transition-all disabled:bg-slate-300 shadow-md shadow-indigo-100"
+                  >
+                    {editEmployeIsLoading ? "Editing..." : "Edit Employee"}
                   </button>
                 </td>
               </tr>
@@ -147,9 +239,9 @@ const EmployesPage = () => {
 
         {/* Error Messages */}
         <div className="mt-4 space-y-2">
-          {deleteEmployeError && (
+          {employesError && (
             <p className="text-red-500 text-xs bg-red-50 p-2 rounded-lg border border-red-100">
-              ⚠️ {deleteEmployeError}
+              ⚠️ {employesError}
             </p>
           )}
           {createEmployeError && (
@@ -157,9 +249,14 @@ const EmployesPage = () => {
               ⚠️ {createEmployeError}
             </p>
           )}
-          {employesError && (
+          {editEmployeError && (
             <p className="text-red-500 text-xs bg-red-50 p-2 rounded-lg border border-red-100">
-              ⚠️ {employesError}
+              ⚠️ {editEmployeError}
+            </p>
+          )}
+          {deleteEmployeError && (
+            <p className="text-red-500 text-xs bg-red-50 p-2 rounded-lg border border-red-100">
+              ⚠️ {deleteEmployeError}
             </p>
           )}
         </div>

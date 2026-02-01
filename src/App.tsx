@@ -14,6 +14,7 @@ import FormPage from "./pages/FormPage";
 import RHFPage from "./pages/RHFPage";
 import EmployesPage from "./pages/EmployesPage";
 import UsersPage from "./pages/UsersPage";
+import UsersPageMe from "./pages/users/UserPage";
 
 // uncotrolled/input
   // const inputRef = useRef<HTMLInputElement>(null);
@@ -56,6 +57,7 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/employes" element={<EmployesPage />} />
         <Route path="/users" element={<UsersPage />} />
+        <Route path="/usersme" element={<UsersPageMe />} />
 
 
 

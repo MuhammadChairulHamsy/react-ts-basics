@@ -4,6 +4,7 @@ import { axiosInstance } from "../lib/axios";
 type EmployeResponse = {
   id: string;
   name: string;
+  job: string
 };
 
 export const useFetchEmployes = () => {

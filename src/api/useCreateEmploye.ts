@@ -5,11 +5,15 @@ export const useCreateEmploye = () => {
   const [createEmployeIsLoading, setCreateEmployeIsLoading] = useState(false);
   const [createEmployeError, setCreateEmployeError] = useState("");
 
-  const createEmploye = async (payload: string) => {
+  const createEmploye = async (payload: {
+    name?: string,
+    job?: string,
+  }) => {
     try {
       setCreateEmployeIsLoading(true);
       await axiosInstance.post("/employes", {
-        name: payload,
+        name: payload.name,
+        job: payload.job,
       });
     } catch (error) {
       setCreateEmployeError((error as TypeError).message);

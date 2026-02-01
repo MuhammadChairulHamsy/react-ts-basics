@@ -57,3 +57,18 @@ Buat aplikasi React yang mengambil dan menampilkan daftar pengguna dari API http
 3. Tambahkan loading dan error handling. Tampilkan spinner atau pesan jika diperlukan.
 
 4. Bonus: Perbaiki logika pengambilan data agar menggunakan react-query untuk performa yang lebih baik.
+
+**HomeWork 4**
+
+
+Buat aplikasi React yang mengambil dan menampilkan daftar pengguna dari AP
+
+1. Gunakan fetch atau axios untuk mengambil data pengguna saat tombol diklik.
+
+2. Tampilkan detail pengguna dalam format daftar (menampilkan nama, email, dan perusahaan).
+
+3. Tambahkan loading dan error handling. Tampilkan spinner atau pesan jika diperlukan.
+
+4. Menambahkan fitur untuk menambah, mengedit, dan menghapus data
+
+5. Bonus: Perbaiki logika pengambilan data agar menggunakan react-query untuk performa yang lebih baik.
