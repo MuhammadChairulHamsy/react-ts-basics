@@ -15,6 +15,7 @@ import RHFPage from "./pages/RHFPage";
 import EmployesPage from "./pages/EmployesPage";
 import UsersPage from "./pages/UsersPage";
 import UsersPageMe from "./pages/users/UserPage";
+import LearnStatePropsInput from "./pages";
 
 // uncotrolled/input
   // const inputRef = useRef<HTMLInputElement>(null);
@@ -50,6 +51,7 @@ function App() {
     <>
       <Routes>
         {/* Page */}
+        
         <Route index element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/products" element={<ProductPage />} />        
@@ -59,6 +61,8 @@ function App() {
         <Route path="/users" element={<UsersPage />} />
         <Route path="/usersme" element={<UsersPageMe />} />
 
+        {/* Learn State, Props, input */}
+          <Route path="/learn" element={<LearnStatePropsInput />} />
 
 
         {/* Form */}

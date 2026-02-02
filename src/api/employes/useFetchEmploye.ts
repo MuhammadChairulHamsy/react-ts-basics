@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { axiosInstance } from "../lib/axios";
+import { axiosInstance } from "../../lib/axios";
 
 type EmployeResponse = {
   id: string;
   name: string;
-  job: string
+  job: string;
 };
 
 export const useFetchEmployes = () => {
@@ -27,7 +27,6 @@ export const useFetchEmployes = () => {
     }
   };
 
-  
   return {
     fetchEmployes,
     employes,

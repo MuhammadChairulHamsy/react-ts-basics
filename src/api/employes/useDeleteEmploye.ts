@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { axiosInstance } from "../lib/axios";
+import { axiosInstance } from "../../lib/axios";
 
 export const useDeleteEmploye = () => {
   const [deleteEmployeIsLoading, setDeleteEmployeIsLoading] = useState(false);

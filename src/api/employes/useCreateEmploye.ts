@@ -1,14 +1,11 @@
 import { useState } from "react";
-import { axiosInstance } from "../lib/axios";
+import { axiosInstance } from "../../lib/axios";
 
 export const useCreateEmploye = () => {
   const [createEmployeIsLoading, setCreateEmployeIsLoading] = useState(false);
   const [createEmployeError, setCreateEmployeError] = useState("");
 
-  const createEmploye = async (payload: {
-    name?: string,
-    job?: string,
-  }) => {
+  const createEmploye = async (payload: { name?: string; job?: string }) => {
     try {
       setCreateEmployeIsLoading(true);
       await axiosInstance.post("/employes", {
@@ -24,6 +21,6 @@ export const useCreateEmploye = () => {
   return {
     createEmploye,
     createEmployeIsLoading,
-    createEmployeError
-  }
+    createEmployeError,
+  };
 };
