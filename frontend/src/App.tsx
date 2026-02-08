@@ -13,8 +13,8 @@ import ContactPage from "./pages/ContactPage";
 import FormPage from "./pages/FormPage";
 import RHFPage from "./pages/RHFPage";
 import EmployesPage from "./pages/EmployesPage";
-import UsersPage from "./pages/UsersPage";
-import UsersPageMe from "./pages/users/UserPage";
+// import UsersPage from "./pages/UsersPage";
+import UsersPage from "./pages/users/UserPage";
 import LearnStatePropsInput from "./pages";
 
 // uncotrolled/input
@@ -59,7 +59,7 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/employes" element={<EmployesPage />} />
         <Route path="/users" element={<UsersPage />} />
-        <Route path="/usersme" element={<UsersPageMe />} />
+        {/* <Route path="/usersme" element={<UsersPageMe />} /> */}
 
         {/* Learn State, Props, input */}
           <Route path="/learn" element={<LearnStatePropsInput />} />

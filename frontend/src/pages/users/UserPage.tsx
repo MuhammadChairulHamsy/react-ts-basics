@@ -1,7 +1,7 @@
 import { useUsers } from "../../hooks/useUsers";
 import { UserTableForm } from "../../components/UserTableForm";
 
-const UsersPageMe = () => {
+const UsersPage = () => {
   const { users, status, forms, actions } = useUsers();
 
   if (status.isLoading)
@@ -97,4 +97,4 @@ const UsersPageMe = () => {
   );
 };
 
-export default UsersPageMe;
+export default UsersPage;
