@@ -7,7 +7,7 @@ export type UserResponse = {
   company: string;
 };
 export const fetchUsers = async (): Promise<UserResponse[]> => {
-  const response = await axiosInstance.get<UserResponse[]>("/users");
+  const {data} = await axiosInstance.get<UserResponse[]>("/users");
 
-  return response.data;
+  return data;
 };
