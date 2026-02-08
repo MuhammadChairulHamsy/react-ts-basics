@@ -13,8 +13,16 @@ datasource db {
   provider = "postgresql"
 }
 
+model Users {
+  id Int @id @default(autoincrement())
+  name String
+  email String
+  company String
+}
+
 model Employes {
   id  Int @id @default(autoincrement())
   name String
   job String
 }
+
