@@ -3,3 +3,5 @@ export type CreateUserInput = {
     email: string;
     company :string;
 }
+
+export type UpdateUserInput = Partial<CreateUserInput>
