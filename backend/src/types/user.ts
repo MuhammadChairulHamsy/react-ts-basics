@@ -1,6 +1,7 @@
 export type CreateUserInput = {
     name: string;
     email: string;
+    address: string;
     company :string;
 }
 

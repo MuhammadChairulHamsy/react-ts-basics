@@ -6,7 +6,7 @@ export const findAllUser = async () => {
 };
 
 export const findUserById = async (id: number) => {
-  return await prisma.employes.findUnique({
+  return await prisma.users.findUnique({
     where: { id },
   });
 };

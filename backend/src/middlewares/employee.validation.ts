@@ -10,7 +10,7 @@ export const validationEmployee = (
   if (!name || !job) {
     return res.status(400).json({
       message:
-        "Kolom tidak lengkap! Nama, deskripsi, gambar, dan harga wajib diisi.",
+        "Kolom tidak lengkap! Nama, job wajib diisi.",
     });
   }
 

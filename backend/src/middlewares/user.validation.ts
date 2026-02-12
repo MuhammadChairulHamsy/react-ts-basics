@@ -5,12 +5,12 @@ export const validationUser = (
   res: Response,
   next: NextFunction,
 ) => {
-  const { name, email, company } = req.body;
+  const { name, email, address, company } = req.body;
 
-  if (!name || !email || !company) {
+  if (!name || !email || !address || !company) {
     return res.status(400).json({
       message:
-        "Kolom tidak lengkap! Nama, deskripsi, gambar, dan harga wajib diisi.",
+        "Kolom tidak lengkap! Nama, email, address, dan company wajib diisi.",
     });
   }
 
